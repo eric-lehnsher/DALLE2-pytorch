@@ -3144,12 +3144,12 @@ class Decoder(nn.Module):
 
         if not self.unconditional:
             batch_size = image_embed.shape[0]
-
+        self.unconditional = True;
         if exists(text) and not exists(text_encodings) and not self.unconditional:
             assert exists(self.clip)
             _, text_encodings = self.clip.embed_text(text)
 
-        assert not (self.condition_on_text_encodings and not exists(text_encodings)), 'text or text encodings must be passed into decoder if specified'
+        assert not (self.x and not exists(text_encodings)), 'text or text encodings must be passed into decoder if specified'
         assert not (not self.condition_on_text_encodings and exists(text_encodings)), 'decoder specified not to be conditioned on text, yet it is presented'
 
         assert not (exists(inpaint_image) ^ exists(inpaint_mask)), 'inpaint_image and inpaint_mask (boolean mask of [batch, height, width]) must be both given for inpainting'
