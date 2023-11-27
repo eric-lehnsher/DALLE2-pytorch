@@ -2505,7 +2505,7 @@ class Decoder(nn.Module):
         learned_variance = True,
         learned_variance_constrain_frac = False,
         vb_loss_weight = 0.001,
-        unconditional = False,                      # set to True for generating images without conditioning
+        unconditional = True,                      # set to True for generating images without conditioning
         auto_normalize_img = True,                  # whether to take care of normalizing the image from [0, 1] to [-1, 1] and back automatically - you can turn this off if you want to pass in the [-1, 1] ranged image yourself from the dataloader
         use_dynamic_thres = False,                  # from the Imagen paper
         dynamic_thres_percentile = 0.95,
